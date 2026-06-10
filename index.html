@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PhishNet is an educational phishing email detector that spots suspicious language, links, and social engineering tactics.">
+  <title>PhishNet — Phishing Email Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="PhishNet home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M16 3 27 8v8c0 7-4.7 11.2-11 13-6.3-1.8-11-6-11-13V8l11-5Z"/><path d="m11.5 16 3 3 6.5-7"/></svg>
+      </span>
+      <span>PHISH<span>NET</span></span>
+    </a>
+    <div class="header-status">
+      <span class="status-dot"></span>
+      Local analysis
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span>01</span> Message threat scanner</div>
+      <h1>Think before<br><em>you click.</em></h1>
+      <p>Paste a suspicious message. PhishNet breaks down the social engineering tactics hiding inside it.</p>
+    </section>
+
+    <section class="scanner-shell" aria-label="Phishing message scanner">
+      <div class="input-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="step-number">01</span>
+            <h2>Paste message</h2>
+          </div>
+          <button class="clear-button" id="clearButton" type="button">Clear</button>
+        </div>
+
+        <div class="input-wrap">
+          <label class="sr-only" for="messageInput">Email or message to analyze</label>
+          <textarea id="messageInput" maxlength="5000" spellcheck="false" placeholder="Paste the email, SMS, or message you want to check..."></textarea>
+          <div class="input-footer">
+            <span><span class="lock-icon">⌁</span> Processed on your device</span>
+            <span id="charCount">0 / 5,000</span>
+          </div>
+        </div>
+
+        <div class="sample-row">
+          <span>Try an example</span>
+          <button class="sample-chip" type="button" data-sample="delivery">Delivery alert</button>
+          <button class="sample-chip" type="button" data-sample="account">Account warning</button>
+          <button class="sample-chip" type="button" data-sample="safe">Safe message</button>
+        </div>
+
+        <button class="analyze-button" id="analyzeButton" type="button">
+          Analyze message
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <div class="results-panel" id="resultsPanel" aria-live="polite">
+        <div class="empty-state" id="emptyState">
+          <div class="radar">
+            <span></span><span></span><span></span>
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 10v22l15 9"/><circle cx="32" cy="32" r="4"/></svg>
+          </div>
+          <p>Waiting for a message</p>
+          <span>Your analysis will appear here.</span>
+        </div>
+
+        <div class="analysis-results" id="analysisResults" hidden>
+          <div class="result-heading">
+            <div>
+              <span class="step-number">02</span>
+              <h2>Threat analysis</h2>
+            </div>
+            <span class="risk-badge" id="riskBadge">Low risk</span>
+          </div>
+
+          <div class="score-card">
+            <div class="score-copy">
+              <span>Phishing risk</span>
+              <strong><span id="scoreValue">0</span><small>/100</small></strong>
+              <p id="scoreSummary">No major warning signs found.</p>
+            </div>
+            <div class="score-ring" id="scoreRing">
+              <div><span id="ringValue">0</span><small>risk</small></div>
+            </div>
+          </div>
+
+          <div class="signal-list" id="signalList"></div>
+
+          <div class="highlight-section">
+            <div class="section-label">
+              <span>Suspicious content</span>
+              <div class="legend"><i class="urgent"></i> Phrase <i class="link"></i> Link</div>
+            </div>
+            <div class="highlighted-message" id="highlightedMessage"></div>
+          </div>
+
+          <div class="advice-box" id="adviceBox">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3v.01"/></svg>
+            <div>
+              <strong>What should I do?</strong>
+              <p id="adviceText"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="education">
+      <div class="education-intro">
+        <div class="eyebrow"><span>02</span> Know the signals</div>
+        <h2>Phishing relies on<br>pressure, not proof.</h2>
+        <p>Attackers want you to act before you think. Slow down and verify through a trusted channel.</p>
+      </div>
+      <div class="tip-grid">
+        <article>
+          <span>01</span>
+          <div class="tip-icon">!</div>
+          <h3>Urgency & fear</h3>
+          <p>“Act now,” threats, and surprise deadlines are designed to bypass careful thinking.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <div class="tip-icon link-tip">↗</div>
+          <h3>Strange links</h3>
+          <p>Misspelled brands, shortened URLs, and unusual domains can lead to fake login pages.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <div class="tip-icon">?</div>
+          <h3>Unexpected asks</h3>
+          <p>Be suspicious of sudden requests for passwords, payments, gift cards, or personal data.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-mark">✓</span><span>PHISH<span>NET</span></span></a>
+    <p>Built for awareness, not certainty. Always verify important messages independently.</p>
+    <span>EDUCATIONAL TOOL · 2026</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
